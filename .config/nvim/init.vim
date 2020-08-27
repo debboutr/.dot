@@ -28,6 +28,7 @@ Plug 'mhinz/vim-signify'                                " adds git gutter marks
 Plug 'posva/vim-vue'                       " syntax highlighting for .vue files
 Plug 'LucHermitte/lh-vim-lib'
 Plug 'LucHermitte/lh-brackets'
+Plug 'vimwiki/vimwiki'
 " Plug 'ludovicchabant/vim-gutentags'
 call plug#end()
 
