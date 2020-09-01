@@ -64,6 +64,10 @@ autocmd FileType javascript setlocal ts=2 sts=2 sw=2
 " create ctags for ste-packages in env
 " map <F6> :!ctags -R -f ./tags `python -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())"`<CR>
 
+" get back to being NORMAL
+inoremap jk <ESC>
+
+" move selected lines up and down
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 "syntax highlighting for git changed lines
@@ -114,9 +118,9 @@ vnoremap < < gv
 vnoremap > > gv
 
 " vim fugitive git settings -- coconut oil ABOUND!
-nmap <leader> gh :diffget //3<CR>
-nmap <leader> gu :diffget //2<CR>
-nmap <leader> gs :G<CR>
+nmap <leader>gl :diffget //3<CR>
+nmap <leader>gh :diffget //2<CR>
+nmap <leader>gs :G<CR>
 
 " Signify settings............................................................
 nmap <leader>gj <plug>(signify-next-hunk)
