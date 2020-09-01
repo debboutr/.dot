@@ -143,5 +143,6 @@ unset __conda_setup
 export PATH=/home/rick/anaconda3/bin:$PATH
 # <<< conda initialize <<< !!! Remains Commented !!!
 export PATH=$PATH:/home/rick/dev/ngrok-stable-linux-amd64
+export MYVIMRC=~/.config/nvim/init.vim
 
 neofetch

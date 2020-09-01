@@ -11,8 +11,6 @@
 
 
 let mapleader=" "
-highlight ColorColumn ctermbg=0 guibg=lightgrey
-
 
 call plug#begin('~/local/share/nvim/plugged')
 Plug 'morhetz/gruvbox'                  " the best colorscheme in the universe!
@@ -111,6 +109,14 @@ let g:netrw_banner=0
 let g:netrw_winsize=25
 
 let g:ctrlp_use_caching          =0
+" better tabbing
+vnoremap < < gv
+vnoremap > > gv
+
+" vim fugitive git settings -- coconut oil ABOUND!
+nmap <leader> gh :diffget //3<CR>
+nmap <leader> gu :diffget //2<CR>
+nmap <leader> gs :G<CR>
 
 " Signify settings............................................................
 nmap <leader>gj <plug>(signify-next-hunk)
@@ -141,3 +147,6 @@ fun! TrimWhitespace()
     keeppatterns %s/\s\+$//e
     call winrestview(l:save)
 endfun
+
+" source this MOFO
+au! BufWritePost $MYVIMRC source %
