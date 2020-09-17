@@ -9,7 +9,7 @@
 "             | | | | | | |_ \ V /| | | | | | |
 "             |_|_| |_|_|\__(_)_/ |_|_| |_| |_|
 
-
+" autocmd FileType python nnoremap >vuffer> <cr> :silent w<bar>only<bar>vsp<bar>term ipython3 -i %<cr>
 let mapleader=" "
 
 call plug#begin('~/local/share/nvim/plugged')
@@ -58,7 +58,7 @@ set autoread
 " spacing -- default is 4 spaces
 set tabstop=4 softtabstop=4 shiftwidth=4
 autocmd FileType vue setlocal ts=2 sts=2 sw=2
-autocmd FileType html setlocal ts=2 sts=2 sw=2
+autocmd FileType html,htmldjango setlocal ts=2 sts=2 sw=2
 autocmd FileType javascript setlocal ts=2 sts=2 sw=2
 
 " create ctags for ste-packages in env
@@ -102,7 +102,11 @@ map <C-g> <Esc><Esc>:BCommits!<CR>
 map <C-p> :GFiles<CR>
 nmap <S-Enter> O<Esc>j
 nmap <leader><C-]> :execute 'tab tag '.expand('<cword>')<CR>
-
+" use signify for hunkdiff and hunkundo
+nnoremap <silent> <leader>hu :SignifyHunkUndo<CR>
+nnoremap <silent> <leader>hd :SignifyHunkDiff<CR>
+" remap :bd, quicker
+nnoremap <silent> <leader>q :bd<CR>
 
 let g:python_host_prog = "/usr/bin/python"
 let g:python3_host_prog = "/usr/bin/python3"
