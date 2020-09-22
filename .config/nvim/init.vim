@@ -43,7 +43,7 @@ set smartcase
 set noswapfile
 set noshowmode
 set noerrorbells
-set colorcolumn=80
+set colorcolumn=81
 set background=dark
 set clipboard=unnamedplus
 set undodir=~/.config/nvim/undodir
