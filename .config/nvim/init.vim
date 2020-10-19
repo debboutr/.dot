@@ -72,7 +72,6 @@ autocmd FileType jsonnet setlocal ts=2 sts=2 sw=2
 
 " get back to being NORMAL
 inoremap jk <ESC>
-vnoremap jk <ESC>
 
 " move selected lines up and down
 vnoremap J :m '>+1<CR>gv=gv
@@ -103,7 +102,6 @@ map <C-f> <Esc><Esc>:Files!<CR>
 inoremap <C-f> <Esc><Esc>:BLines!<CR>
 map <C-g> <Esc><Esc>:BCommits!<CR>
 map <C-p> :GFiles<CR>
-nmap <S-Enter> O<Esc>j
 nmap <leader><C-]> :execute 'tab tag '.expand('<cword>')<CR>
 " use signify for hunkdiff and hunkundo
 nnoremap <silent> <leader>su :SignifyHunkUndo<CR>
@@ -129,14 +127,24 @@ nmap <leader>gl :diffget //3<CR>
 nmap <leader>gh :diffget //2<CR>
 nmap <leader>gs :G<CR>
 
-" Signify settings............................................................
+"      _             _  __
+"  ___(_) __ _ _ __ (_)/ _|_   _
+" / __| |/ _` | '_ \| | |_| | | |
+" \__ \ | (_| | | | | |  _| |_| |
+" |___/_|\__, |_| |_|_|_|  \__, |
+"        |___/             |___/
 nmap <leader>gj <plug>(signify-next-hunk)
 nmap <leader>gk <plug>(signify-prev-hunk)
 let g:signify_sign_change                     ='~'
 let g:signify_sign_delete                     ='-'
 let g:signify_sign_show_count                 =0
 
-"Lightline statusline settings................................................
+"  _ _       _     _   _ _
+" | (_) __ _| |__ | |_| (_)_ __   ___
+" | | |/ _` | '_ \| __| | | '_ \ / _ \
+" | | | (_| | | | | |_| | | | | |  __/
+" |_|_|\__, |_| |_|\__|_|_|_| |_|\___|
+"      |___/
 let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
@@ -151,7 +159,6 @@ let g:lightline = {
 let g:lightline#bufferline#show_number  = 2
 let g:lightline#bufferline#shorten_path = 0
 let g:lightline#bufferline#unnamed	= '[No Name]'
-let g:lightline						= {}
 let g:lightline.tabline				= {'left': [['buffers']], 'right': [['close']]}
 let g:lightline.component_expand	= {'buffers': 'lightline#bufferline#buffers'}
 let g:lightline.component_type		= {'buffers': 'tabsel'}
@@ -169,9 +176,20 @@ nmap <Leader>4 <Plug>lightline#bufferline#go(4)
 nmap <Leader>5 <Plug>lightline#bufferline#go(5)
 nmap <Leader>6 <Plug>lightline#bufferline#go(6)
 nmap <Leader>7 <Plug>lightline#bufferline#go(7)
+
+function! s:trim(maxlen, str) abort
+    let trimed = len(a:str) > a:maxlen ? a:str[0:a:maxlen] . '..' : a:str
+    return trimed
+endfunction
+"
 " Show full path of filename
 function! FilenameForLightline()
-    return expand('%')
+  let root = fnamemodify(get(b:, 'git_dir'), ':h')
+  let path = expand('%:p')
+  if path[:len(root)-1] ==# root
+    return path[len(root)+1:]
+  endif
+  return expand('%')
 endfunction
 
 fun! TrimWhitespace()
