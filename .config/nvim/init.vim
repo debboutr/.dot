@@ -30,6 +30,7 @@ Plug 'LucHermitte/lh-vim-lib'
 Plug 'LucHermitte/lh-brackets'
 Plug 'vimwiki/vimwiki'
 Plug 'google/vim-jsonnet'
+Plug 'psf/black'
 " Plug 'ludovicchabant/vim-gutentags'
 call plug#end()
 
@@ -80,6 +81,8 @@ vnoremap K :m '<-2<CR>gv=gv
 nnoremap <Leader>8 :set textwidth=80 <CR>
 "remove syntax highlighting
 nnoremap <Leader>9 :noh<CR>
+" run black on .py files
+nnoremap <Leader>b :Black<CR>
 " move to splits
 nnoremap <Leader>h :wincmd h<CR>
 nnoremap <Leader>j :wincmd j<CR>
@@ -177,11 +180,6 @@ nmap <Leader>5 <Plug>lightline#bufferline#go(5)
 nmap <Leader>6 <Plug>lightline#bufferline#go(6)
 nmap <Leader>7 <Plug>lightline#bufferline#go(7)
 
-function! s:trim(maxlen, str) abort
-    let trimed = len(a:str) > a:maxlen ? a:str[0:a:maxlen] . '..' : a:str
-    return trimed
-endfunction
-"
 " Show full path of filename
 function! FilenameForLightline()
   let root = fnamemodify(get(b:, 'git_dir'), ':h')
@@ -192,14 +190,22 @@ function! FilenameForLightline()
   return expand('%')
 endfunction
 
+" remove whitespace at the end of lines
 fun! TrimWhitespace()
     let l:save = winsaveview()
     keeppatterns %s/\s\+$//e
     call winrestview(l:save)
 endfun
+
 " format an XML file
 com! FormatXML :%!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
 
 nnoremap = :FormatXML<Cr>
+
+" format .py files with Black when leaving Insert mode
+autocmd InsertLeave *.py execute ':Black'
+let g:black_linelength = 90
+
 " source this MOFO
 au! BufWritePost $MYVIMRC source %
+
