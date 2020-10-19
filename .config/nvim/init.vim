@@ -17,16 +17,19 @@ Plug 'morhetz/gruvbox'                  " the best colorscheme in the universe!
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-commentary'
 Plug 'leafgarland/typescript-vim'
 Plug 'vim-utils/vim-man'
 Plug 'Valloric/YouCompleteMe'
 Plug 'itchyny/lightline.vim'
+Plug 'mengelbrecht/lightline-bufferline'
 Plug 'itchyny/vim-gitbranch'
 Plug 'mhinz/vim-signify'                                " adds git gutter marks
 Plug 'posva/vim-vue'                       " syntax highlighting for .vue files
 Plug 'LucHermitte/lh-vim-lib'
 Plug 'LucHermitte/lh-brackets'
 Plug 'vimwiki/vimwiki'
+Plug 'google/vim-jsonnet'
 " Plug 'ludovicchabant/vim-gutentags'
 call plug#end()
 
@@ -43,10 +46,12 @@ set smartcase
 set noswapfile
 set noshowmode
 set noerrorbells
-set colorcolumn=81
+set showtabline=2
+set colorcolumn=80
 set background=dark
 set clipboard=unnamedplus
 set undodir=~/.config/nvim/undodir
+set foldlevel=20
 set splitbelow splitright
 exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
 set list
@@ -60,18 +65,20 @@ set tabstop=4 softtabstop=4 shiftwidth=4
 autocmd FileType vue setlocal ts=2 sts=2 sw=2
 autocmd FileType html,htmldjango setlocal ts=2 sts=2 sw=2
 autocmd FileType javascript setlocal ts=2 sts=2 sw=2
+autocmd FileType jsonnet setlocal ts=2 sts=2 sw=2
 
 " create ctags for ste-packages in env
 " map <F6> :!ctags -R -f ./tags `python -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())"`<CR>
 
 " get back to being NORMAL
 inoremap jk <ESC>
+vnoremap jk <ESC>
 
 " move selected lines up and down
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 "syntax highlighting for git changed lines
-nnoremap <Leader>8 :SignifyToggleHighlight<CR>
+nnoremap <Leader>8 :set textwidth=80 <CR>
 "remove syntax highlighting
 nnoremap <Leader>9 :noh<CR>
 " move to splits
@@ -79,9 +86,7 @@ nnoremap <Leader>h :wincmd h<CR>
 nnoremap <Leader>j :wincmd j<CR>
 nnoremap <Leader>k :wincmd k<CR>
 nnoremap <Leader>l :wincmd l<CR>
-" comment visual selection python
-vnoremap <Leader>c :s/^/# <CR>
-" this will open up the file tree
+
 nnoremap <Leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 " remove whitespace at the end of lines
 nnoremap <Leader>w :call TrimWhitespace()<CR>
@@ -91,9 +96,7 @@ nnoremap <silent> <C-Right> :vertical resize -3<CR>
 nnoremap <silent> <C-Up> :resize +3<CR>
 nnoremap <silent> <C-Down> :resize -3<CR>
 nnoremap <silent> <leader>gd :YcmCompleter GoTo<CR>
-" split out all buffers into a tab
-nnoremap <silent> <leader>t :tab sball<CR>
-nnoremap <silent> <leader>gf :YcmCompleter FixIt<CR>
+" nnoremap <silent> <leader>gf :YcmCompleter FixIt<CR>
 " reload all buffers at once!
 nnoremap <F5> :bufdo! e<CR>
 map <C-f> <Esc><Esc>:Files!<CR>
@@ -103,8 +106,8 @@ map <C-p> :GFiles<CR>
 nmap <S-Enter> O<Esc>j
 nmap <leader><C-]> :execute 'tab tag '.expand('<cword>')<CR>
 " use signify for hunkdiff and hunkundo
-nnoremap <silent> <leader>hu :SignifyHunkUndo<CR>
-nnoremap <silent> <leader>hd :SignifyHunkDiff<CR>
+nnoremap <silent> <leader>su :SignifyHunkUndo<CR>
+nnoremap <silent> <leader>sd :SignifyHunkDiff<CR>
 " remap :bd, quicker
 nnoremap <silent> <leader>q :bd<CR>
 
@@ -132,7 +135,7 @@ nmap <leader>gk <plug>(signify-prev-hunk)
 let g:signify_sign_change                     ='~'
 let g:signify_sign_delete                     ='-'
 let g:signify_sign_show_count                 =0
-"..............................................................................
+
 "Lightline statusline settings................................................
 let g:lightline = {
       \ 'active': {
@@ -141,10 +144,31 @@ let g:lightline = {
       \ },
       \ 'component_function': {
       \   'filename': 'FilenameForLightline',
-      \   'gitbranch': 'FugitiveHead'
+      \   'gitbranch': 'gitbranch#name'
       \ }
       \ }
-"..............................................................................
+" lightline-bufferline integration
+let g:lightline#bufferline#show_number  = 2
+let g:lightline#bufferline#shorten_path = 0
+let g:lightline#bufferline#unnamed	= '[No Name]'
+let g:lightline						= {}
+let g:lightline.tabline				= {'left': [['buffers']], 'right': [['close']]}
+let g:lightline.component_expand	= {'buffers': 'lightline#bufferline#buffers'}
+let g:lightline.component_type		= {'buffers': 'tabsel'}
+let g:lightline#bufferline#composed_number_map = {
+\ 1:  '⑴ ', 2:  '⑵ ', 3:  '⑶ ', 4:  '⑷ ', 5:  '⑸ ',
+\ 6:  '⑹ ', 7:  '⑺ ', 8:  '⑻ ', 9:  '⑼ ', 10: '⑽ ',
+\ 11: '⑾ ', 12: '⑿ ', 13: '⒀ ', 14: '⒁ ', 15: '⒂ ',
+\ 16: '⒃ ', 17: '⒄ ', 18: '⒅ ', 19: '⒆ ', 20: '⒇ '}
+let g:lightline#bufferline#min_buffer_count = 2
+" lightline-bufferline mappings
+nmap <Leader>1 <Plug>lightline#bufferline#go(1)
+nmap <Leader>2 <Plug>lightline#bufferline#go(2)
+nmap <Leader>3 <Plug>lightline#bufferline#go(3)
+nmap <Leader>4 <Plug>lightline#bufferline#go(4)
+nmap <Leader>5 <Plug>lightline#bufferline#go(5)
+nmap <Leader>6 <Plug>lightline#bufferline#go(6)
+nmap <Leader>7 <Plug>lightline#bufferline#go(7)
 " Show full path of filename
 function! FilenameForLightline()
     return expand('%')
@@ -155,6 +179,9 @@ fun! TrimWhitespace()
     keeppatterns %s/\s\+$//e
     call winrestview(l:save)
 endfun
+" format an XML file
+com! FormatXML :%!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
 
+nnoremap = :FormatXML<Cr>
 " source this MOFO
 au! BufWritePost $MYVIMRC source %
