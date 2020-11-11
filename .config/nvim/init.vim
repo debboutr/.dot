@@ -68,8 +68,8 @@ autocmd FileType html,htmldjango setlocal ts=2 sts=2 sw=2
 autocmd FileType javascript setlocal ts=2 sts=2 sw=2
 autocmd FileType jsonnet setlocal ts=2 sts=2 sw=2
 
-" create ctags for ste-packages in env
-" map <F6> :!ctags -R -f ./tags `python -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())"`<CR>
+" create ctags for site-packages in env
+map <F6> :!ctags -R -f ./tags `python -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())"`<CR>
 
 " get back to being NORMAL
 inoremap jk <ESC>
@@ -111,6 +111,8 @@ nnoremap <silent> <leader>su :SignifyHunkUndo<CR>
 nnoremap <silent> <leader>sd :SignifyHunkDiff<CR>
 " remap :bd, quicker
 nnoremap <silent> <leader>q :bd<CR>
+" delete all buffers from current to last
+map <leader>z :.,$-bd<CR>
 
 let g:python_host_prog = "/usr/bin/python"
 let g:python3_host_prog = "/usr/bin/python3"
@@ -200,11 +202,11 @@ endfun
 " format an XML file
 com! FormatXML :%!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
 
-nnoremap = :FormatXML<Cr>
+nnoremap <Leader>fx :FormatXML<Cr>
 
 " format .py files with Black when leaving Insert mode
-autocmd InsertLeave *.py execute ':Black'
-let g:black_linelength = 90
+" autocmd InsertLeave *.py execute ':Black'
+" let g:black_linelength = 90
 
 " source this MOFO
 au! BufWritePost $MYVIMRC source %

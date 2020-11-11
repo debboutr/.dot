@@ -16,6 +16,12 @@ alias workdiff="cd ~/dev/chemcurator_django; git diff --name-only staging-releas
 alias workv="cd ~/dev/chemcurator_vuejs; git diff --name-only | xargs vi -p"
 alias config='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'
 # alias pypkg='cd "$(python -c 'import site; print(site.getsitepackages()[0])')"'
-alias dj="cd ~/dev/chemcurator_django && conda activate reg"
+alias hem="cd ~/dev/factotum && conda activate hem && docker-compose up -d"
+alias dj="cd ~/dev/chemcurator_django \
+        && conda activate reg \
+        && docker start postgresql marvin ketcher"
 alias sv="cd ~/dev/resolver && conda activate solv"
-alias vu="cd ~/dev/chemcurator_vuejs && conda deactivate"
+alias vu="cd ~/dev/chemcurator_vuejs \
+        && conda deactivate \
+        && docker start postgresql marvin ketcher"
+alias ds='docker container stop $(docker container list --format "{{.Names}}")'

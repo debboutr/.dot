@@ -19,7 +19,6 @@ env = None if not in_env else os.environ['CONDA_PREFIX'].split('/')[-1]
 
 
 if env == 'gis':
-    print("yay")
     import geopandas as gpd
     import rasterio as rs
 
