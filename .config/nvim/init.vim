@@ -44,6 +44,7 @@ set undofile
 set incsearch
 set expandtab
 set smartcase
+set ignorecase
 set noswapfile
 set noshowmode
 set noerrorbells

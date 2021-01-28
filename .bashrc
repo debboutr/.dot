@@ -153,3 +153,4 @@ export PATH=$PATH:/home/rick/dev/ngrok-stable-linux-amd64
 export MYVIMRC=~/.config/nvim/init.vim
 
 neofetch
+# date '+%T'|figlet -k

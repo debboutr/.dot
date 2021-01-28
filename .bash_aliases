@@ -21,7 +21,19 @@ alias dj="cd ~/dev/chemcurator_django \
         && conda activate reg \
         && docker start postgresql marvin ketcher"
 alias sv="cd ~/dev/resolver && conda activate solv"
+alias workr="cd ~/dev/resolver; git diff --name-only | xargs vi -p"
 alias vu="cd ~/dev/chemcurator_vuejs \
         && conda deactivate \
         && docker start postgresql marvin ketcher"
 alias ds='docker container stop $(docker container list --format "{{.Names}}")'
+alias slash='docker rm -f postgresql \
+            && docker run \
+                -e POSTGRES_USER=postgres \
+                --volume=postgresql:/var/lib/postgres/data \
+                -e POSTGRES_PASSWORD=postgres \
+                -e POSTGRES_DB=chemreg \
+                --name=postgresql \
+                --network=host \
+                --detach \
+                postgres:12.1'
+alias build='mng migrate && mng loaddata chemreg/fixtures/* && mng runserver'
