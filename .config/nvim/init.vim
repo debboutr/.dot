@@ -31,10 +31,12 @@ Plug 'LucHermitte/lh-brackets'
 Plug 'vimwiki/vimwiki'
 Plug 'google/vim-jsonnet'
 Plug 'psf/black'
+Plug 'dstein64/vim-smile'
 " Plug 'ludovicchabant/vim-gutentags'
 call plug#end()
 
 colorscheme gruvbox
+autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
 
 set number
 set rnu
@@ -48,7 +50,7 @@ set ignorecase
 set noswapfile
 set noshowmode
 set noerrorbells
-set showtabline=2
+"set showtabline=2
 set colorcolumn=80
 set background=dark
 set clipboard=unnamedplus
@@ -61,6 +63,8 @@ set foldmethod=manual
 set foldmethod=indent
 set updatetime=100
 set autoread
+set shortmess=I
+hi Search ctermfg=Brown
 
 " spacing -- default is 4 spaces
 set tabstop=4 softtabstop=4 shiftwidth=4
@@ -84,6 +88,8 @@ nnoremap <Leader>8 :set textwidth=80 <CR>
 nnoremap <Leader>9 :noh<CR>
 " run black on .py files
 nnoremap <Leader>b :Black<CR>
+" look at open buffers
+" nnoremap <Leader>o :Buffers<CR>
 " move to splits
 nnoremap <Leader>h :wincmd h<CR>
 nnoremap <Leader>j :wincmd j<CR>
@@ -110,17 +116,22 @@ nmap <leader><C-]> :execute 'tab tag '.expand('<cword>')<CR>
 " use signify for hunkdiff and hunkundo
 nnoremap <silent> <leader>su :SignifyHunkUndo<CR>
 nnoremap <silent> <leader>sd :SignifyHunkDiff<CR>
+" open up RipGrep!
+nnoremap <silent> <leader>ff :Rg<CR>
+nnoremap <silent> <leader>o :Files<CR>
+" open up netrw!
+nnoremap <silent> <leader>x :Lex!<CR>
 " remap :bd, quicker
 nnoremap <silent> <leader>q :bd<CR>
 " delete all buffers from current to last
 map <leader>z :.,$-bd<CR>
-
+let g:usemarks = 0 " dont't use marks with brackets
 let g:python_host_prog = "/usr/bin/python"
 let g:python3_host_prog = "/usr/bin/python3"
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 let g:netrw_browse_split=0
-let g:netrw_banner=0
+"let g:netrw_banner=0
 let g:netrw_winsize=25
 
 let g:ctrlp_use_caching          =0
@@ -204,6 +215,9 @@ endfun
 com! FormatXML :%!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
 
 nnoremap <Leader>fx :FormatXML<Cr>
+
+" pretty print all json in a file
+" :%!python -m json.tool
 
 " format .py files with Black when leaving Insert mode
 " autocmd InsertLeave *.py execute ':Black'

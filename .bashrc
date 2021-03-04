@@ -14,6 +14,10 @@ case $- in
       *) return;;
 esac
 
+# set manpager to batcat!!
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -22,8 +26,9 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+# negative number here will make history size infinite
+HISTSIZE=-47
+HISTFILESIZE=-47
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -149,8 +154,8 @@ fi
 unset __conda_setup
 export PATH=/home/rick/anaconda3/bin:$PATH
 # <<< conda initialize <<< !!! Remains Commented !!!
-export PATH=$PATH:/home/rick/dev/ngrok-stable-linux-amd64
+export PATH=$PATH:/home/rick/dev/ngrok-stable-linux-amd64:/home/rick/.local/bin
 export MYVIMRC=~/.config/nvim/init.vim
 
-neofetch
+# neofetch
 # date '+%T'|figlet -k

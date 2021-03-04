@@ -10,8 +10,8 @@ alias runadmin="URL_CONF=admin python manage.py runserver 0.0.0.0:8008"
 alias ca='conda activate'
 alias reboot='reboot --no-wall'
 alias shutdown='shutdown now'
-alias dps='docker ps --format "{{.Image}}: {{.Status}}"'
-alias work="cd ~/dev/chemcurator_django; git diff --name-only | xargs vi -p"
+alias dps='docker ps --format "{{.Names}}: {{.Status}}"'
+alias work="git diff --name-only | xargs vi -p"
 alias workdiff="cd ~/dev/chemcurator_django; git diff --name-only staging-release | xargs vi -p"
 alias workv="cd ~/dev/chemcurator_vuejs; git diff --name-only | xargs vi -p"
 alias config='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'
@@ -37,3 +37,5 @@ alias slash='docker rm -f postgresql \
                 --detach \
                 postgres:12.1'
 alias build='mng migrate && mng loaddata chemreg/fixtures/* && mng runserver'
+alias linode="ssh root@192.53.167.126"
+alias linode2='ssh rickd@192.53.167.126'
