@@ -39,3 +39,4 @@ alias slash='docker rm -f postgresql \
 alias build='mng migrate && mng loaddata chemreg/fixtures/* && mng runserver'
 alias linode="ssh root@192.53.167.126"
 alias linode2='ssh rickd@192.53.167.126'
+alias tinker="ssh bill@192.168.128.59"

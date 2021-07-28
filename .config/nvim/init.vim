@@ -57,14 +57,17 @@ set clipboard=unnamedplus
 set undodir=~/.config/nvim/undodir
 set foldlevel=20
 set splitbelow splitright
-exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+"exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
 set list
 set foldmethod=manual
 set foldmethod=indent
 set updatetime=100
+set hidden
 set autoread
 set shortmess=I
-hi Search ctermfg=Brown
+hi Search ctermfg=DarkGreen
+hi ColorColumn ctermbg=Black
+set listchars=eol:$,nbsp:_,tab:>-,trail:~,extends:>,precedes:<
 
 " spacing -- default is 4 spaces
 set tabstop=4 softtabstop=4 shiftwidth=4
@@ -215,6 +218,8 @@ endfun
 com! FormatXML :%!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
 
 nnoremap <Leader>fx :FormatXML<Cr>
+" toggle word wrap
+nnoremap <Leader>w :set wrap!<Cr>
 
 " pretty print all json in a file
 " :%!python -m json.tool
@@ -225,4 +230,7 @@ nnoremap <Leader>fx :FormatXML<Cr>
 
 " source this MOFO
 au! BufWritePost $MYVIMRC source %
+com! FormatXML :%!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
 
+nnoremap = :FormatXML<Cr>
+autocmd BufNewFile *.py 0r ~/.config/nvim/skeletons/python.py
