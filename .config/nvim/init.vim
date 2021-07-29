@@ -57,14 +57,13 @@ set clipboard=unnamedplus
 set undodir=~/.config/nvim/undodir
 set foldlevel=20
 set splitbelow splitright
-"exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
 set list
 set foldmethod=manual
 set foldmethod=indent
 set updatetime=100
 set hidden
 set autoread
-set shortmess=I
+" set shortmess=I
 hi Search ctermfg=DarkGreen
 hi ColorColumn ctermbg=Black
 set listchars=eol:$,nbsp:_,tab:>-,trail:~,extends:>,precedes:<
@@ -116,9 +115,6 @@ inoremap <C-f> <Esc><Esc>:BLines!<CR>
 map <C-g> <Esc><Esc>:BCommits!<CR>
 map <C-p> :GFiles<CR>
 nmap <leader><C-]> :execute 'tab tag '.expand('<cword>')<CR>
-" use signify for hunkdiff and hunkundo
-nnoremap <silent> <leader>su :SignifyHunkUndo<CR>
-nnoremap <silent> <leader>sd :SignifyHunkDiff<CR>
 " open up RipGrep!
 nnoremap <silent> <leader>ff :Rg<CR>
 nnoremap <silent> <leader>o :Files<CR>
@@ -155,6 +151,8 @@ nmap <leader>gs :G<CR>
 "        |___/             |___/
 nmap <leader>gj <plug>(signify-next-hunk)
 nmap <leader>gk <plug>(signify-prev-hunk)
+nnoremap <silent> <leader>su :SignifyHunkUndo<CR>
+nnoremap <silent> <leader>sd :SignifyHunkDiff<CR>
 let g:signify_sign_change                     ='~'
 let g:signify_sign_delete                     ='-'
 let g:signify_sign_show_count                 =0
