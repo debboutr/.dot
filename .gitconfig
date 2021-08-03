@@ -1,9 +1,15 @@
-[color]
-	ui = auto
 [user]
 	name = debboutr
 	email = debboutr@gmail.com
-[alias]
-    ls = log --oneline -n 12
+[color]
+	ui = auto
+[color "status"]
+    added = green bold
+    changed = yellow bold
+    untracked = magenta bold
 [pull]
 	ff = only
+[core]
+	pager = "bat"
+[alias]
+    ls = log --oneline -n 13
