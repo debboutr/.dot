@@ -19,7 +19,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'leafgarland/typescript-vim'
-Plug 'vim-utils/vim-man'
+" Plug 'vim-utils/vim-man' <- doesn't seem to work
 Plug 'Valloric/YouCompleteMe'
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
@@ -101,6 +101,8 @@ nnoremap <Leader>l :wincmd l<CR>
 nnoremap <Leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 " remove whitespace at the end of lines
 nnoremap <Leader>w :call TrimWhitespace()<CR>
+" toggle word wrap
+" nnoremap <Leader>w :set wrap!<Cr>
 
 nnoremap <silent> <C-Left> :vertical resize +3<CR>
 nnoremap <silent> <C-Right> :vertical resize -3<CR>
@@ -216,8 +218,6 @@ endfun
 com! FormatXML :%!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
 
 nnoremap <Leader>fx :FormatXML<Cr>
-" toggle word wrap
-nnoremap <Leader>w :set wrap!<Cr>
 
 " pretty print all json in a file
 " :%!python -m json.tool
