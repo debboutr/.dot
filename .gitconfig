@@ -1,0 +1,5 @@
+[user]
+	name = debboutr
+	email = debboutr@gmail.com
+[alias]
+    ls = log --oneline -n 12
