@@ -4,6 +4,7 @@
 
 if [[ `git -C $HOME/vimwiki status --porcelain` ]]; then
   echo "changes ${date}"
+  git -C $HOME/vimwiki pull
   git -C $HOME/vimwiki add . && git -C $HOME/vimwiki commit -am " changes..$(date -I)" && git -C $HOME/vimwiki push
 else
   echo "no changes $(date -I)"
