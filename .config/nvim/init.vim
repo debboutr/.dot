@@ -21,8 +21,8 @@ Plug 'tpope/vim-commentary'
 Plug 'leafgarland/typescript-vim'
 " Plug 'vim-utils/vim-man' <- doesn't seem to work
 Plug 'Valloric/YouCompleteMe'
-Plug 'itchyny/lightline.vim'
-Plug 'mengelbrecht/lightline-bufferline'
+" Plug 'itchyny/lightline.vim'
+" Plug 'mengelbrecht/lightline-bufferline'
 Plug 'itchyny/vim-gitbranch'
 Plug 'mhinz/vim-signify'                                " adds git gutter marks
 Plug 'posva/vim-vue'                       " syntax highlighting for .vue files
@@ -63,6 +63,8 @@ set foldmethod=indent
 set updatetime=100
 set hidden
 set autoread
+set spell
+set spellcapcheck=
 " set shortmess=I
 hi Search ctermfg=DarkGreen
 hi ColorColumn ctermbg=Black
@@ -120,6 +122,7 @@ nmap <leader><C-]> :execute 'tab tag '.expand('<cword>')<CR>
 " open up RipGrep!
 nnoremap <silent> <leader>ff :Rg<CR>
 nnoremap <silent> <leader>o :Files<CR>
+nnoremap <silent> <leader>t :Buffers<CR>
 " open up netrw!
 nnoremap <silent> <leader>x :Lex!<CR>
 " remap :bd, quicker
@@ -134,6 +137,8 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 let g:netrw_browse_split=0
 "let g:netrw_banner=0
 let g:netrw_winsize=25
+" don't save history in .vim folder
+let g:netrw_dirhistmax = 0
 
 let g:ctrlp_use_caching          =0
 " better tabbing
@@ -232,3 +237,6 @@ com! FormatXML :%!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom
 
 nnoremap = :FormatXML<Cr>
 autocmd BufNewFile *.py 0r ~/.config/nvim/skeletons/python.py
+
+command! -bang -complete=dir -nargs=* LS
+    \ call fzf#run(fzf#wrap({'source': 'ls', 'dir': <q-args>}, <bang>0))
