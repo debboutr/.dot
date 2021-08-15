@@ -11,5 +11,6 @@
 	ff = only
 [core]
 	pager = "bat"
+	editor = vim
 [alias]
     ls = log --oneline -n 13

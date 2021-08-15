@@ -16,6 +16,7 @@ call plug#begin('~/local/share/nvim/plugged')
 Plug 'morhetz/gruvbox'                  " the best colorscheme in the universe!
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'jpalardy/vim-slime'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'leafgarland/typescript-vim'
@@ -91,7 +92,7 @@ nnoremap <Leader>8 :set textwidth=80 <CR>
 "remove syntax highlighting
 nnoremap <Leader>9 :noh<CR>
 " run black on .py files
-nnoremap <Leader>b :Black<CR>
+" nnoremap <Leader>b :Black<CR>
 " look at open buffers
 " nnoremap <Leader>o :Buffers<CR>
 " move to splits
@@ -140,6 +141,12 @@ let g:netrw_winsize=25
 " don't save history in .vim folder
 let g:netrw_dirhistmax = 0
 
+let g:slime_target = "neovim"
+let g:slime_paste_file = "$HOME/.slime_paste"
+" let g:slime_target = "tmux"
+" let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
+" terminal mode exit insert
+tnoremap <leader>q <C-\><C-n>
 let g:ctrlp_use_caching          =0
 " better tabbing
 vnoremap < < gv
@@ -238,5 +245,6 @@ com! FormatXML :%!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom
 nnoremap = :FormatXML<Cr>
 autocmd BufNewFile *.py 0r ~/.config/nvim/skeletons/python.py
 
+" what do you want to do?
 command! -bang -complete=dir -nargs=* LS
     \ call fzf#run(fzf#wrap({'source': 'ls', 'dir': <q-args>}, <bang>0))
