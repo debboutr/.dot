@@ -248,3 +248,26 @@ autocmd BufNewFile *.py 0r ~/.config/nvim/skeletons/python.py
 " what do you want to do?
 command! -bang -complete=dir -nargs=* LS
     \ call fzf#run(fzf#wrap({'source': 'ls', 'dir': <q-args>}, <bang>0))
+"function! Hello(num, start)
+"    let notes=["A","A#","B","C","C#","D","D#","E","F","F#","G","G#"]
+"    for s in range(2, a:num)
+"        let octave=a:start*s
+"        "pu=octave
+"        pu=string('Octave: ' . octave)
+"        let o_range=octave/s*(s-1)
+"        pu=string('o_range : ' . o_range)
+"        let hzzs=(octave - o_range)/12
+"        "TODO: get output to not have string chars on it!!
+"        pu=string('hzzs: ' . hzzs)
+"        let count=0
+"        for herz in range(o_range, octave, hzzs)
+"            let note=get(notes, count, notes[0])
+"            pu=string('    ' . note . ' :' . herz)
+"            let count+=1
+"        endfor
+"    endfor
+"endfunction
+"
+":command! -nargs=+ Music :call Hello(split(<q-args>, "")[0],split(<q-args>, "")[1])
+"" command! -nargs=+ Sub execute 'substitute/' . split(<q-args>, ' ')[0] . '/' . split(<q-args>, ' ')[1] . '/g'
+
