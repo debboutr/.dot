@@ -6,11 +6,11 @@
 [color "status"]
     added = green bold
     changed = yellow bold
-    untracked = magenta bold
+    untracked = cyan bold
 [pull]
 	ff = only
 [core]
 	pager = "bat"
 	editor = vim
 [alias]
-    ls = log --oneline -n 13
+    ls = !sh -c \"git log --oneline -n ${1:-13}\" -
