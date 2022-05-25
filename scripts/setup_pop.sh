@@ -66,16 +66,16 @@ fi
 # install docker...TODO check docker-compose gets installed and docker command can be used without sudo
 if ! [ -x "$(command -v docker)" ]; then
     sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-    sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu `lsb_release -c -s` stable"
+    curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/docker-ce-archive-keyring.gpg > /dev/null
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-ce-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker-ce.list > /dev/null
     sudo apt update
     sudo apt install -y docker-ce
     # need to restart after these below
     sudo groupadd docker
     sudo usermod -aG docker rick
     # TODO: get most recent version in URL below
-    sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/.local/bin/docker-compose
-    sudo chmod +x /usr/.local/bin/docker-compose
+    sudo curl -SL "https://github.com/docker/compose/releases/download/v2.5.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/lib/docker/cli-plugins/docker-compose
+    sudo chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
 else
     echo "docker is already installed."
 fi
