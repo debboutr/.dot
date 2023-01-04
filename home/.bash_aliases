@@ -1,4 +1,3 @@
-
 alias mng='python manage.py'
 alias diary="vim +'normal Go' +'r!date' ~/projects/me.txt"
 alias runadmin="URL_CONF=admin python manage.py runserver 0.0.0.0:8008"
