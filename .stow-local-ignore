@@ -1,4 +1,5 @@
 scripts
 vim
-README.md
+^/README.*
+\.git
 
