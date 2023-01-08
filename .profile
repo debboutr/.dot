@@ -26,7 +26,7 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-export MYVIMRC=~/.config/nvim/init.vim
+#export MYVIMRC=/home/rick/config/nvim/init.lua
 
 # neofetch
 # date '+%T'|figlet -k
