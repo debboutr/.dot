@@ -26,12 +26,6 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-if ! [ -x "$(command -v conda)" ]
-then
-    conda deactivate
-fi
-
-echo "in .profile"
 export MYVIMRC=~/.config/nvim/init.vim
 
 # neofetch
