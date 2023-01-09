@@ -17,7 +17,10 @@ end
 vim.keymap.set('n', '<F3>', '<cmd>SignifyHunkDiff<cr>', {})
 vim.keymap.set('n', '<F4>', '<cmd>SignifyHunkUndo<cr>', {})
 vim.keymap.set('n', '<F5>', mappings.cur_buf, {})
---vim.g.loaded_signify_sign_change                     ='~'
+vim.g['signify_sign_change'] = '~'
+vim.g['signify_sign_delete'] = '-'
+vim.g['signify_sign_show_count'] = 0
+vim.g['signify_number_highlight'] = 0
 
 --nmap <leader>gj <plug>(signify-next-hunk)
 --nmap <leader>gk <plug>(signify-prev-hunk)
