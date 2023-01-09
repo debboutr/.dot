@@ -17,7 +17,7 @@ vim.opt.wrap = false
 
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.local/share/nvim/undodir"
+vim.opt.undodir = vim.fn.stdpath("data") .. "/undodir"
 vim.opt.undofile = true
 
 vim.opt.hlsearch = false
@@ -40,5 +40,3 @@ vim.opt.textwidth = 72
 -- height of the command window at the bottom
 vim.opt.cmdheight = 1
 --vim.opt.clipboard = unnamedplus
-vim.keymap.set({'n', 'x'}, 'cp', '"+y')
-vim.keymap.set({'n', 'x'}, 'cv', '"+p')
