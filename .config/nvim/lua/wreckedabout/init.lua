@@ -26,7 +26,7 @@ autocmd({"BufWritePre"}, {
 })
 
 autocmd("FileType", {
-	pattern = {"html", "css"},
+	pattern = {"html", "css", "lua"},
 	callback = function()
 		vim.opt_local.shiftwidth = 2
 		vim.opt_local.tabstop = 2
