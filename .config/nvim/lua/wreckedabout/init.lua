@@ -7,9 +7,6 @@ local ThePrimeagenGroup = augroup('ThePrimeagen', {})
 local autocmd = vim.api.nvim_create_autocmd
 local yank_group = augroup('HighlightYank', {})
 
-function R(name)
-    require("plenary.reload").reload_module(name)
-end
 
 autocmd('TextYankPost', {
     group = yank_group,
@@ -26,6 +23,14 @@ autocmd({"BufWritePre"}, {
     group = ThePrimeagenGroup,
     pattern = "*",
     command = [[%s/\s\+$//e]],
+})
+
+autocmd("FileType", {
+	pattern = {"html", "css"},
+	callback = function()
+		vim.opt_local.shiftwidth = 2
+		vim.opt_local.tabstop = 2
+	end
 })
 
 vim.g.netrw_browse_split = 0
