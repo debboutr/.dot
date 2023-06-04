@@ -1,7 +1,31 @@
+local custom_codedark = require'lualine.themes.codedark'
+
+custom_codedark["command"] = {
+    ["a"] = {
+      ["bg"] = "#b8bb26",
+      ["fg"] = "#282828",
+      ["gui"] = "bold"
+    },
+    ["b"] = {
+      ["bg"] = "#504945",
+      ["fg"] = "#ebdbb2"
+    },
+    ["c"] = {
+      ["bg"] = "#7c6f64",
+      ["fg"] = "#282828"
+    }
+  }
+
+
+-- print(vim.inspect(custom_codedark))
+-- Change the background of lualine_a section for command mode
+custom_codedark.normal.a.bg = '#8e911d'
+custom_codedark.insert.a.bg = '#a3a622'
+
 require('lualine').setup {
   options = {
-    icons_enabled = false,
-    theme = 'gruvbox',
+    icons_enabled = true,
+    theme = custom_codedark,
     component_separators = "",
     section_separators = "",
     disabled_filetypes = {
@@ -41,5 +65,5 @@ require('lualine').setup {
   tabline = {},
   winbar = {},
   inactive_winbar = {},
-  extensions = {}
+  extensions = {'fugitive'}
 }

@@ -1,12 +1,12 @@
+require("wreckedabout.packer")
 require("wreckedabout.set")
 require("wreckedabout.remap")
-
-local augroup = vim.api.nvim_create_augroup
-local ThePrimeagenGroup = augroup('ThePrimeagen', {})
+-- require("wreckedabout.autocmd")
 
 local autocmd = vim.api.nvim_create_autocmd
-local yank_group = augroup('HighlightYank', {})
+local augroup = vim.api.nvim_create_augroup
 
+local yank_group = augroup('HighlightYank', {})
 
 autocmd('TextYankPost', {
     group = yank_group,
@@ -19,12 +19,6 @@ autocmd('TextYankPost', {
     end,
 })
 
-autocmd({"BufWritePre"}, {
-    group = ThePrimeagenGroup,
-    pattern = "*",
-    command = [[%s/\s\+$//e]],
-})
-
 autocmd("FileType", {
 	pattern = {"html", "css", "lua"},
 	callback = function()
@@ -32,7 +26,8 @@ autocmd("FileType", {
 		vim.opt_local.tabstop = 2
 	end
 })
-
+-- vim.cmd("autocmd BufEnter * silent! lcd %:p:h")
+vim.cmd("autocmd BufEnter * silent! :Glcd")
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 1
 vim.g.netrw_winsize = 25

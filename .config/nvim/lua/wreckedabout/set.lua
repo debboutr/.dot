@@ -1,4 +1,4 @@
-vim.opt.guicursor = ""
+-- vim.opt.guicursor = ""
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
@@ -39,4 +39,5 @@ vim.wo.wrap = false
 vim.opt.textwidth = 72
 -- height of the command window at the bottom
 vim.opt.cmdheight = 1
---vim.opt.clipboard = unnamedplus
+vim.opt.clipboard = "unnamedplus"
+vim.g['python3_host_prog'] = '/home/rick/.venv/bin/python'

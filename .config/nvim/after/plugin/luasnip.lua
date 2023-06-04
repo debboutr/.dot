@@ -4,18 +4,30 @@ local types = require "luasnip.util.types"
 ls.config.set_config {
   history = true,
   updateevents = "TextChanged,TextChangedI",
-  enable_autosnippets = true,
+  enable_autosnippets = false,
   ext_opts = nil,
 }
 
-ls.snippets = {
-  all = {
-    ls.parser.parse_snippet("expand", "--this is what was expanded"),
-  },
-  -- lua = {
-  -- },
-}
+ls.add_snippets(nil, {
+  -- basic, don't need to know anything else
+  --    arg 1: string
+  --    arg 2: a node
+  ls.s("simple", ls.text_node("wow, you were right!")),
+	ls.parser.parse_snippet(
+		"lspsyn",
+		"Wow! This ${1:Stuff} really ${2:works. ${3:Well, a bit.}}"
+	),
+  -- ls.s("expand", "--this is what was expanded"),
+})
 
+
+-- ls.snippets = {
+--   all = {
+--   },
+--   lua = {
+--   },
+-- }
+--
 --[[
 keymaps for luasnip ]]
 

@@ -1,7 +1,5 @@
 require("wreckedabout")
+--require("plenary.test_harness")
 require("wreckedabout.globals")
---[[
-this is a multi-line comment
-proven by this line here...
---]]
+-- require("wreckedabout.autocmd")
 
