@@ -11,7 +11,7 @@ alias hist='history | grep '
 
 
 alias mng='python manage.py'
-alias diary="vim +'normal Go' +'r!date' ~/projects/me.txt"
+alias diary="nvim +'normal Go' +'r!date' ~/projects/me.txt"
 alias runadmin="URL_CONF=admin python manage.py runserver 0.0.0.0:8008"
 alias reboot='reboot --no-wall'
 alias shutdown='shutdown now'
@@ -34,3 +34,4 @@ alias slash='docker rm -f postgresql \
                 postgres:12.1'
 alias build='mng migrate && mng loaddata chemreg/fixtures/* && mng runserver'
 alias ventoy='/home/rick/.local/bin/ventoy-1.0.88-linux/ventoy-1.0.88/VentoyGUI.x86_64'
+alias xo='xdg-open '
