@@ -1,5 +1,4 @@
 scripts
-vim
 ^/README.*
 \.git
-
+.local/bin/duckdb
