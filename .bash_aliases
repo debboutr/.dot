@@ -35,3 +35,5 @@ alias slash='docker rm -f postgresql \
 alias build='mng migrate && mng loaddata chemreg/fixtures/* && mng runserver'
 alias ventoy='/home/rick/.local/bin/ventoy-1.0.88-linux/ventoy-1.0.88/VentoyGUI.x86_64'
 alias xo='xdg-open '
+alias rm='gio trash'
+alias brm='/usr/bin/rm'

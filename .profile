@@ -26,24 +26,26 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-#export MYVIMRC=/home/rick/config/nvim/init.lua
+#EVERYTHING AFTER THIS LINE, I HAVE ADDED!!
+#######################################################################
 
-# neofetch
-# date '+%T'|figlet -k
+# not sure how, but this will maitain history between tmux and bash
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
-
-# append to the history file, don't overwrite it
-shopt -s histappend
+HISTCONTROL=ignoreboth:erasedups
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=-47
 HISTFILESIZE=-47
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
+# check if gdrive is already mounted
+if [[ $(find ~/.gdrive/gdrive/ -maxdepth 1 -type f | wc -l) -eq 0 ]]; then
+  google-drive-ocamlfuse ~/.gdrive/gdrive/
+fi
 
-export PROMPT_COMMAND="history -a; history -n"
+# this is added from the node install that I use
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
