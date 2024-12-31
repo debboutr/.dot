@@ -1,5 +1,5 @@
-alias linode="ssh root@192.53.167.126"
-alias linode2='ssh rickd@192.53.167.126'
+alias superlinode="ssh root@192.53.167.126"
+alias linode='ssh rickd@192.53.167.126'
 alias tinker="ssh bill@192.168.128.59"
 
 alias ..='cd ..'
@@ -7,6 +7,7 @@ alias ...='cd ../..'
 alias c='printf "\e[H\e[2J"'
 alias tree='tree --gitignore'
 alias hist='history | grep '
+alias ll='ls -halF'
 
 
 
