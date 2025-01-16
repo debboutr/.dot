@@ -8,6 +8,7 @@ alias c='printf "\e[H\e[2J"'
 alias tree='tree --gitignore'
 alias hist='history | grep '
 alias ll='ls -halF'
+alias out='systemctl suspend'
 
 
 
@@ -37,5 +38,5 @@ alias build='mng migrate && mng loaddata chemreg/fixtures/* && mng runserver'
 alias ventoy='/home/rick/.local/bin/ventoy-1.0.88-linux/ventoy-1.0.88/VentoyGUI.x86_64'
 alias xo='xdg-open '
 alias rm='gio trash'
-alias vi='nvim'
+# alias vi='nvim'
 alias brm='/usr/bin/rm'
