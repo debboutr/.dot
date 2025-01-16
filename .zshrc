@@ -73,6 +73,7 @@ alias xo='xdg-open'
 alias mng='python manage.py'
 alias tree='tree --gitignore'
 alias vi='nvim'
+alias out='systemctl suspend'
 
 export EDITOR=nvim
 export NVIM_APPNAME=nvimexample

@@ -1,5 +1,11 @@
 return {
   {
+    'vimwiki/vimwiki',
+    lazy = false,
+    branch = "dev",
+    enabled = true,
+  },
+  {
     'nvim-telescope/telescope-symbols.nvim',
     enabled = true,
     config = function ()
