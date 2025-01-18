@@ -5,6 +5,15 @@ if false then
   mycoolfunction()
 end
 
+
+local P = function(v)
+  print(vim.inspect(v))
+  return v
+end
+-- local harpoon = require "harpoon"
+-- harpoon:setup()
+-- P(harpoon.info())
+
 -- for lua filetypes!! THIS IS A WAY TO CONFIG KEYWORDS!!
 -- vim.cmd [[ hi @function.builtin.lua guifg=yellow ]]
 -- for all filetypes!!
