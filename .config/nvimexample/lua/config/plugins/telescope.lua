@@ -30,10 +30,11 @@ return {
 	  }
 	end, {desc="Find Files in your config!!"})
       vim.keymap.set("n", "<space>fp", function ()
-	  require('telescope.builtin').find_files {
-	    cwd = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy") 
+	  require('telescope.builtin').live_grep {
+	    cwd = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy"),
+	    prompt_title = "Search word/s in lazy plugins",
 	  }
-      end)
+      end, {desc="Find Files in your plugin repos!!"})
       require("config.telescope.multigrep").setup()
       end
   }

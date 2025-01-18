@@ -6,7 +6,7 @@ return {
     branch = "harpoon2",
     dependencies = { "nvim-lua/plenary.nvim" },
     settings = {
-      save_on_toggle = true,
+      save_on_toggle = false,
       sync_on_ui_close = false,
     },
     config = function()
@@ -17,7 +17,7 @@ return {
 	harpoon:list():add()
       end)
       vim.keymap.set("n", "<space>hl", function()
-	harpoon.ui:toggle_quick_menu(harpoon:list())
+	harpoon.ui:toggle_quick_menu(harpoon:list(), { title = '---¡harpoon!--->' })
       end)
 
       local s = "asdfg"

@@ -1,19 +1,5 @@
 require("config.lazy")
 
-mycoolfunction = function () print("this is from the function!!") end
-if false then
-  mycoolfunction()
-end
-
-
-local P = function(v)
-  print(vim.inspect(v))
-  return v
-end
--- local harpoon = require "harpoon"
--- harpoon:setup()
--- P(harpoon.info())
-
 -- for lua filetypes!! THIS IS A WAY TO CONFIG KEYWORDS!!
 -- vim.cmd [[ hi @function.builtin.lua guifg=yellow ]]
 -- for all filetypes!!
@@ -24,6 +10,7 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.o.textwidth = 80
+
  -- make the background transparent
 vim.cmd [[
   highlight Normal guibg=none
@@ -93,4 +80,14 @@ end, { desc = "call docker ps in the terminal that was brought up by the command
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Escape insert mode in terminal!!" })
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move visual selection down!!" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move visual selection up!!" })
+vim.keymap.set("n", "<leader>c", ":nohl<CR>", { desc = "Clear the highlighting!!" })
 
+P = function(v)
+  print(vim.inspect(v))
+  return v
+end
+-- P(vim.opt.hlsearch:get())
+-- this is fucked when using in `init` because it is returning something?
+-- I think it's because it returns a table, the call above ↑ doesn't throw the
+-- same error if I hit <esc> when the printed table occupies the screen
+--P(vim.opt.hlsearch)
