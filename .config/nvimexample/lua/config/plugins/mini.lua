@@ -1,20 +1,6 @@
 return {
   {
-    'vimwiki/vimwiki',
-    lazy = false,
-    branch = "dev",
-    enabled = true,
-  },
-  {
-    'nvim-telescope/telescope-symbols.nvim',
-    enabled = true,
-    config = function ()
-      vim.keymap.set("n", "<leader>fe", "<cmd>Telescope symbols<CR>")
-    end
-  },
-  {
     'echasnovski/mini.nvim',
-    -- enabled = false,
     enabled = true,
     config = function ()
       local statusline = require "mini.statusline"

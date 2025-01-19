@@ -15,10 +15,10 @@ return {
 
       vim.keymap.set("n", "<space>hh", function()
 	harpoon:list():add()
-      end)
+      end, { desc = "Harpoon It!!"})
       vim.keymap.set("n", "<space>hl", function()
 	harpoon.ui:toggle_quick_menu(harpoon:list(), { title = '---¡harpoon!--->' })
-      end)
+      end, { desc = "Harpoon List!!"})
 
       local s = "asdfg"
       for i = 1, #s do

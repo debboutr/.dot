@@ -21,6 +21,7 @@ return {
       }
       require('telescope').load_extension('fzf')
 
+      vim.keymap.set("n", "<space>fd", vim.cmd.Ex, {desc="Netrw Files!!"})
       vim.keymap.set("n", "<space>fk", require('telescope.builtin').keymaps, {desc="Find Keymappings!!"})
       vim.keymap.set("n", "<space>ff", require('telescope.builtin').find_files, {desc="Find Files in this director!"})
       vim.keymap.set("n", "<space>fh", require('telescope.builtin').help_tags, {desc="Find Help tags!!"})
