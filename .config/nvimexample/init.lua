@@ -11,6 +11,9 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.o.textwidth = 80
 
+vim.opt.undodir = vim.fn.stdpath("data") .. "/undodir"
+vim.opt.undofile = true
+
  -- make the background transparent
 vim.cmd [[
   highlight Normal guibg=none

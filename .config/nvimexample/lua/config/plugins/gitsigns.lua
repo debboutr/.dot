@@ -2,7 +2,7 @@ return {
   {
 
     'lewis6991/gitsigns.nvim',
-    -- lazy = false,
+    lazy = true,
     branch = "main",
     enabled = true,
     event = "BufReadPre",
@@ -88,10 +88,10 @@ return {
 	  map('n', ']r', gitsigns.reset_hunk)
 	  map('v', ']s', function() gitsigns.stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
 	  map('v', ']r', function() gitsigns.reset_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
+	  map('n', ']w', gitsigns.preview_hunk)
 	  -- map('n', '<leader>hS', gitsigns.stage_buffer)
 	  -- map('n', '<leader>hu', gitsigns.undo_stage_hunk)
 	  -- map('n', '<leader>hR', gitsigns.reset_buffer)
-	  map('n', ']w', gitsigns.preview_hunk)
 	  -- map('n', '<leader>hb', function() gitsigns.blame_line{full=true} end)
 	  -- map('n', '<leader>tb', gitsigns.toggle_current_line_blame)
 	  -- map('n', '<leader>hd', gitsigns.diffthis)
