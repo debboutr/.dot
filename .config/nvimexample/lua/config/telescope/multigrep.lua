@@ -5,7 +5,6 @@ local conf = require('telescope.config').values
 
 -- ctrl + q will move all of the files in the picker into the quickfixlist
 
-local M = {}
 
 local live_multigrep = function (opts)
   opts = opts or {}
@@ -45,8 +44,5 @@ local live_multigrep = function (opts)
   }):find()
 end
 
-M.setup = function ()
-  vim.keymap.set("n", "<space>fw", live_multigrep, {desc="Find Words w/ ripgrep!! doublespace for glob syntax!!"})
-end
+vim.keymap.set("n", "<space>fw", live_multigrep, {desc="Find Words w/ ripgrep!! doublespace for glob syntax!!"})
 
-return M

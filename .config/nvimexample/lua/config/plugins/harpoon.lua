@@ -52,7 +52,7 @@ return {
       for i = 1, #s do
 	local c = s:sub(i,i)
 	-- print(c)
-	vim.keymap.set("n", string.format("<space>h%s", c), function()
+	vim.keymap.set("n", string.format("<space><space>%s", c), function()
 	  harpoon:list():select(i)
 	end)
       end

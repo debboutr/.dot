@@ -59,6 +59,9 @@
 	      results_title = "",
 	      preview_title = "",
 	    },
+	    buffers = {
+	      theme = "ivy",
+	    }
 	  },
 	  extensions = {
 	    fzf = {}
@@ -81,7 +84,10 @@
 	    prompt_title = "Search word/s in lazy plugins",
 	  }
 	end, {desc="Find Files in your plugin repos!!"})
-	require("config.telescope.multigrep").setup()
+	-- search for words and file regex's
+	require("config.telescope.multigrep")
+	-- buffer navigation w/ delete
+	require("config.telescope.buffers")
       end
       }
     }
