@@ -61,19 +61,58 @@ vim.keymap.set("n", "<space>st", function ()
   vim.fn.feedkeys("L", "n")
 end)
 
-vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>", {desc = "Source the whole file!!"})
-vim.keymap.set("n", "<space>x", ":.lua<CR>", {desc = "Source the line that you're on!!"})
-
 vim.keymap.set("n", "<space>rr", function ()
   local line = vim.api.nvim_get_current_line()
   vim.fn.chansend(job_id, { line.."\r\n"})
 end, { desc = ""})
+
+vim.keymap.set("v", "<leader>rr", function ()
+  -- newlines in the visual selection are going to be
+  -- a bit of a thing, if there is a tab char at the
+  -- beginning of a line I'm going to have to find a
+  -- way to deal with that
+  start = vim.fn.getpos("v")
+  stop = vim.fn.getpos(".")
+  if stop[2] < start[2] then
+    start, stop = stop, start
+  end
+  if not (#vim.fn.getline(stop[2]) == 0) then
+    stop[3] = #vim.fn.getline(stop[2])
+  end
+  P(start)
+  P(stop)
+  -- start = { 0, 94, 1, 0 }
+  -- stop = { 0, 99, 1, 0 }
+  lines = vim.fn.getregion(start, stop, {type = "V"})
+  bufnr = vim.api.nvim_get_current_buf()
+  P(lines)
+  -- this = table.concat(lines, "\012\r").."\r\n\r\n"
+  -- P(this)
+  -- vim.fn.chansend(job_id, { this })
+  start_space = vim.fn.match(lines[0], '\\S')
+  stop_space = vim.fn.match(lines[#lines], '\\S')
+  for _, line in pairs(lines) do
+    code = vim.fn.trim(line)
+    -- if #vim.fn.trim(line) >= 2 then
+    vim.fn.chansend(job_id, { code.."\r" })
+    -- end
+  end
+  print(start_space, stop_space)
+  if not (start_space == stop_space) then
+    vim.fn.chansend(job_id, { "\r\n" })
+  end
+end, { desc = "run python from visual mode!"})
 
 -- import pandas as pd
 -- data = {'Name': ['John', 'Mary', 'Peter'], 'Age': [20, 25, 30]}
 -- df = pd.DataFrame(data)
 -- print(df)
 -- print(sum(df.Age))
+--
+--
+-- def thisaaah():
+--     return "hello world!"
+--
 
 vim.keymap.set("n", "<space>dock", function ()
   -- vim.fn.chansend(job_id, { "docker ps\r\n" })
@@ -86,9 +125,11 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move visual selection up!
 vim.keymap.set("n", "<leader>c", ":nohl<CR>", { desc = "Clear the highlighting!!" })
 
 P = function(v)
+  -- GTK! this can only print a single table!
   print(vim.inspect(v))
   return v
 end
+
 -- P(vim.opt.hlsearch:get())
 -- this is fucked when using in `init` because it is returning something?
 -- I think it's because it returns a table, the call above ↑ doesn't throw the
