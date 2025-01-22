@@ -57,8 +57,10 @@ vim.keymap.set("n", "<space>st", function ()
   vim.cmd.wincmd("L")
   -- vim.api.nvim_win_set_width(0, 47)
   job_id = vim.bo.channel
-  vim.fn.chansend(job_id, { "/home/rick/.venv/bin/ipython\r\n"})
   vim.fn.feedkeys("L", "n")
+  vim.fn.chansend(job_id, { "/home/rick/.venv/bin/ipython\r\n"})
+  vim.fn.chansend(job_id, { "%clear\r\n"})
+  vim.fn.feedkeys(":wincmd h\r\n", "n")
 end)
 
 vim.keymap.set("n", "<space>rr", function ()
@@ -67,37 +69,24 @@ vim.keymap.set("n", "<space>rr", function ()
 end, { desc = ""})
 
 vim.keymap.set("v", "<leader>rr", function ()
-  -- newlines in the visual selection are going to be
-  -- a bit of a thing, if there is a tab char at the
-  -- beginning of a line I'm going to have to find a
-  -- way to deal with that
   start = vim.fn.getpos("v")
   stop = vim.fn.getpos(".")
   if stop[2] < start[2] then
     start, stop = stop, start
   end
+  -- apply the length of the last line for the
+  -- column value to the end of the line
   if not (#vim.fn.getline(stop[2]) == 0) then
     stop[3] = #vim.fn.getline(stop[2])
   end
-  P(start)
-  P(stop)
-  -- start = { 0, 94, 1, 0 }
-  -- stop = { 0, 99, 1, 0 }
   lines = vim.fn.getregion(start, stop, {type = "V"})
   bufnr = vim.api.nvim_get_current_buf()
-  P(lines)
-  -- this = table.concat(lines, "\012\r").."\r\n\r\n"
-  -- P(this)
-  -- vim.fn.chansend(job_id, { this })
   start_space = vim.fn.match(lines[0], '\\S')
   stop_space = vim.fn.match(lines[#lines], '\\S')
   for _, line in pairs(lines) do
     code = vim.fn.trim(line)
-    -- if #vim.fn.trim(line) >= 2 then
     vim.fn.chansend(job_id, { code.."\r" })
-    -- end
   end
-  print(start_space, stop_space)
   if not (start_space == stop_space) then
     vim.fn.chansend(job_id, { "\r\n" })
   end

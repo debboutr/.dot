@@ -26,7 +26,7 @@ final_space = true
     type = 'path'
     style = 'plain'
     background = 'transparent'
-    foreground = 'lightGreen'
+    foreground = 'green'
     template = '<b>{{ .Path }}</b>'
 
     [blocks.segments.properties]
@@ -52,7 +52,7 @@ final_space = true
       style = 'plain'
       foreground = 'yellow'
       background = 'transparent'
-      template = '{{ .FormattedMs }}'
+      template = '<b>{{ .FormattedMs }}<\b>'
 
       [blocks.segments.properties]
 	threshold = 3000
@@ -67,7 +67,7 @@ final_space = true
     style = 'plain'
     foreground_templates = [
       "{{ if gt .Code 0}}red{{end}}",
-      "{{ if eq .Code 0}}lightGreen{{end}}",
+      "{{ if eq .Code 0}}green{{end}}",
     ]
     background = 'transparent'
     template = '<b>$</b>'
@@ -75,12 +75,12 @@ final_space = true
 [transient_prompt]
     foreground_templates = [
       "{{ if gt .Code 0}}darkGray{{end}}",
-      "{{ if eq .Code 0}}lightGreen{{end}}",
+      "{{ if eq .Code 0}}green{{end}}",
     ]
   background = 'transparent'
   template = '<b>$ </b>'
 
 [secondary_prompt]
-  foreground = 'lightGreen'
+  foreground = 'green'
   background = 'transparent'
   template = '$$ '
