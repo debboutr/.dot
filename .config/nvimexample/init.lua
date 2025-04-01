@@ -10,6 +10,7 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.o.textwidth = 80
+vim.o.ignorecase = true
 
 vim.opt.undodir = vim.fn.stdpath("data") .. "/undodir"
 vim.opt.undofile = true
@@ -115,6 +116,7 @@ vim.keymap.set("n", "<leader>c", ":nohl<CR>", { desc = "Clear the highlighting!!
 
 P = function(v)
   -- GTK! this can only print a single table!
+  -- you can also use it w/o the call solely on a line, IT RETURNS!!
   print(vim.inspect(v))
   return v
 end
