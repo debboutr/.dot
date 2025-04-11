@@ -68,6 +68,8 @@ alias mng='python manage.py'
 alias tree='tree --gitignore'
 alias vi='nvim'
 alias out='systemctl suspend'
+alias ..='cd ..'
+alias ...='cd ../..'
 
 export EDITOR=nvim
 export NVIM_APPNAME=nvimexample
