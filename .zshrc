@@ -59,7 +59,7 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 alias ls='ls --color'
-alias ll='ls -alF'
+alias ll='ls -halF'
 alias c='clear'
 alias rm='gio trash'
 alias brm='/usr/bin/rm '
@@ -67,9 +67,14 @@ alias xo='xdg-open'
 alias mng='python manage.py'
 alias tree='tree --gitignore'
 alias vi='nvim'
+alias hist='history | grep '
 alias out='systemctl suspend'
 alias ..='cd ..'
 alias ...='cd ../..'
+alias superlinode="ssh root@192.53.167.126"
+alias linode='ssh rickd@192.53.167.126'
+alias hostinger='ssh ricd@31.97.149.216'
+alias hostingeroot='ssh root@31.97.149.216'
 
 export EDITOR=nvim
 export NVIM_APPNAME=nvimexample

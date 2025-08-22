@@ -23,6 +23,8 @@ vim.cmd [[
   highlight NonText ctermbg=none
 ]]
 
+-- clear highlighting
+vim.keymap.set("n", "<space><space>c", "<cmd>nohl<CR>", {desc = "Clear highlighting nohl!"})
 -- source the whole file!!!
 vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>", {desc = "Source the whole file!!"})
 -- source the current line in lua!!
@@ -72,6 +74,7 @@ end, { desc = ""})
 vim.keymap.set("v", "<leader>rr", function ()
   start = vim.fn.getpos("v")
   stop = vim.fn.getpos(".")
+  P(start)
   if stop[2] < start[2] then
     start, stop = stop, start
   end
@@ -92,17 +95,6 @@ vim.keymap.set("v", "<leader>rr", function ()
     vim.fn.chansend(job_id, { "\r\n" })
   end
 end, { desc = "run python from visual mode!"})
-
--- import pandas as pd
--- data = {'Name': ['John', 'Mary', 'Peter'], 'Age': [20, 25, 30]}
--- df = pd.DataFrame(data)
--- print(df)
--- print(sum(df.Age))
---
---
--- def thisaaah():
---     return "hello world!"
---
 
 vim.keymap.set("n", "<space>dock", function ()
   -- vim.fn.chansend(job_id, { "docker ps\r\n" })
