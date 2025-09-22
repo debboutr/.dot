@@ -75,6 +75,7 @@ alias superlinode="ssh root@192.53.167.126"
 alias linode='ssh rickd@192.53.167.126'
 alias hostinger='ssh ricd@31.97.149.216'
 alias hostingeroot='ssh root@31.97.149.216'
+alias drone='drone.py && ./clean.sh && rm clean.sh'
 
 export EDITOR=nvim
 export NVIM_APPNAME=nvimexample

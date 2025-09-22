@@ -10,7 +10,8 @@ import sys
 fn = "clean.sh"
 text = 'ffmpeg -i {} -c:v h264_nvenc -rc:v vbr -b:v 10M -vf "scale=1920:1080" -r 30 -c:a aac -b:a 128k -movflags +faststart {}\n'
 print(os.getcwd())
-vids = [f for f in os.listdir() if f.startswith('DJI_')]
+# print([f for f in os.listdir() if f.endswith('.MP4')])
+vids = [f for f in os.listdir() if f.startswith('DJI_') and f.endswith('.MP4')]
 if vids:
     os.mkdir("orig")
 with open(fn, "w") as f:
