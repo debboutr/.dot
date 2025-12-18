@@ -43,6 +43,7 @@ return {
 
       vim.keymap.set("n", "<space>hh", function()
 	harpoon:list():add()
+	print("HARPOONED!")
       end, { desc = "Harpoon It!!"})
       vim.keymap.set("n", "<space>hw", function()
 	harpoon.ui:toggle_quick_menu(harpoon:list(), { title = '---¡harpoon!--->' })
@@ -54,7 +55,7 @@ return {
 	-- print(c)
 	vim.keymap.set("n", string.format("<space><space>%s", c), function()
 	  harpoon:list():select(i)
-	end)
+	end, { desc = "switch buffer to '" .. c .. "' position" })
       end
 
       -- Toggle previous & next buffers stored within Harpoon list
