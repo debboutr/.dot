@@ -31,6 +31,10 @@ vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>", {desc = "Source the 
 vim.keymap.set("n", "<space>x", ":.lua<CR>", {desc = "Source the whole file!!"})
 -- source the visual selection!!
 vim.keymap.set("v", "<space>x", ":lua<CR>", {desc = "Source the whole file!!"})
+vim.keymap.set("n", "}", "}zz", {desc = "center the highlighted selection"})
+vim.keymap.set("n", "{", "{zz", {desc = "center the highlighted selection"})
+vim.keymap.set("n", "n", "nzz", {desc = "center the highlighted selection"})
+vim.keymap.set("n", "N", "Nzz", {desc = "center the highlighted selection"})
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = "Highlight when yanking text",
