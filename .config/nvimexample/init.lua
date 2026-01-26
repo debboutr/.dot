@@ -1,17 +1,12 @@
 require("config.lazy")
 
--- for lua filetypes!! THIS IS A WAY TO CONFIG KEYWORDS!!
--- vim.cmd [[ hi @function.builtin.lua guifg=yellow ]]
--- for all filetypes!!
--- vim.cmd [[ hi @function.builtin guifg=yellow ]]
-
 vim.opt.shiftwidth = 2
 vim.opt.clipboard = "unnamedplus"
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.o.textwidth = 80
 vim.o.ignorecase = true
-
+vim.opt.spelllang = "en_us"
 vim.opt.undodir = vim.fn.stdpath("data") .. "/undodir"
 vim.opt.undofile = true
 
@@ -122,3 +117,9 @@ end
 -- I think it's because it returns a table, the call above ↑ doesn't throw the
 -- same error if I hit <esc> when the printed table occupies the screen
 --P(vim.opt.hlsearch)
+
+-- for lua filetypes!! THIS IS A WAY TO CONFIG KEYWORDS!!
+-- vim.cmd [[ hi @function.builtin.lua guifg=yellow ]]
+-- for all filetypes!!
+-- vim.cmd [[ hi @function.builtin guifg=yellow ]]
+
