@@ -39,7 +39,7 @@ bindkey '^n' history-search-forward
 # Ctrl-n go down in history
 
 # History
-HISTSIZE=5000
+HISTSIZE=50000
 HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
